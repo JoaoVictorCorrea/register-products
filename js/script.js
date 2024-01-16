@@ -1,5 +1,5 @@
 //Masks
-$("#inputPrice").mask('000.000.000.000.000,00', {reverse: true});
+$("#inputPrice").mask("000.000.000.000.000,00", {reverse: true});
 
 var products = [
     {
@@ -75,9 +75,9 @@ function addNewRow(product) {
     var newRow = table.insertRow();
 
     //Formatter Price
-    var formatter = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
+    var formatter = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
     });
 
     //Insert id product
@@ -90,7 +90,9 @@ function addNewRow(product) {
 
     //Insert description product
     var descriptionNode = document.createTextNode(product.description);
-    newRow.insertCell().appendChild(descriptionNode);
+    var cell = newRow.insertCell();
+    cell.className = "d-none d-md-table-cell";
+    cell.appendChild(descriptionNode);
 
     //Insert price product
     var priceNode = document.createTextNode(formatter.format(product.price));
@@ -101,7 +103,7 @@ function addNewRow(product) {
     newRow.insertCell().appendChild(categoryNode);
 
     //Insert product options
-    var options = '';
+    var options = "";
 
     //Insert promotion product
     if (product.promotion)
@@ -111,5 +113,7 @@ function addNewRow(product) {
     if (product.new)
         options += "<span class='badge bg-primary'>L</span>";
     
-    newRow.insertCell().innerHTML = options;
+    cell = newRow.insertCell();
+    cell.className = "d-none d-md-table-cell";
+    cell.innerHTML = options;
 }
