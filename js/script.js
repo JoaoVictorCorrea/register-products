@@ -48,6 +48,26 @@ function loadProducts() {
     }
 }
 
+//Save a product
+function save() {
+
+    var product = {
+        id: products.length + 1,
+        name: document.getElementById("inputName").value,
+        description: document.getElementById("inputDescription").value,
+        price: document.getElementById("inputPrice").value,
+        category: document.getElementById("selectCategory").value,
+        promotion: document.getElementById("checkBoxPromotion").checked,
+        new: document.getElementById("checkBoxNewProduct").checked
+    };
+
+    addNewRow(product);
+
+    products.push(product);
+
+    document.getElementById("formProduct").reset();
+}
+
 //Add new Row
 function addNewRow(product) {
     var table = document.getElementById("productsTable");
